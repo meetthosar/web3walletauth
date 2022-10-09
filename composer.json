@@ -1,0 +1,33 @@
+{
+    "name": "meetthosar/web3walletauth",
+    "description": "It is livewire package to add login-logout functionality in laravel project with Algorand & Ethereum wallets",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Meet Thosar",
+        "email": "meetthosar@gmail.com"
+      }
+    ],
+    "require": {
+        "php" : "^8.0",
+        "livewire/livewire": "^2.10"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.9"
+    },
+    "autoload": {
+        "psr-4": {
+          "Meetthosar\\Web3WalletAuth\\": "src"
+        }
+      },
+      "extra": {
+        "laravel": {
+            "providers": [
+              "Meetthosar\\Web3WalletAuth\\Web3WalletAuthServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+  }
