@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -22,6 +23,7 @@ class Web3LoginLogout extends Component
 
 
     public string $logoutText = 'Logout';
+    public string $logoutClass = '';
 
     public $participant = null;
 
@@ -40,8 +42,20 @@ class Web3LoginLogout extends Component
                 'address' => $address,
                 'password' => Hash::make(Str::random(10))
             ]);
+            $user->assignRole($this->participant);
         }
+        \session(['web3_account' => $account]);
         Auth::login($user);
         return redirect()->to(route('dashboard'));
+    }
+
+    public function logout() {
+        Auth::guard('web')->logout();
+
+        \session()->invalidate();
+
+        \session()->regenerateToken();
+
+        return redirect('/');
     }
 }
